@@ -160,6 +160,118 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 52p
 .ft-logo{font-family:'Playfair Display',Georgia,serif;font-size:.95rem;color:var(--gold)}
 .ft-meta{font-size:.67rem;color:var(--muted);line-height:1.7}
 .ft-badge{font-size:.62rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+  /* ============================================================
+   MOBILE & TABLET RESPONSIVE
+   Paste this entire block right before the closing </style> tag
+   in your HTML file. Covers iPhone SE → iPhone Pro Max → iPad.
+   ============================================================ */
+
+/* === TABLET (iPad portrait & landscape, up to 768px) === */
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .nav-logo { font-size: 1rem; }
+  .lang-btn { padding: 4px 6px; font-size: .65rem; }
+  .nav-cta { padding: 9px 16px; font-size: .68rem; }
+
+  .hero { padding: 110px 20px 70px; }
+  .hero h1 { font-size: clamp(2.6rem, 9vw, 4.5rem); letter-spacing: -1px; }
+  .hero-scissors { font-size: 8rem; right: 2%; }
+  .hero-btns { flex-direction: column; align-items: center; width: 100%; max-width: 300px; }
+  .btn-gold, .btn-ghost { width: 100%; text-align: center; }
+
+  .stats { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); }
+  .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+  .stat:nth-last-child(-n+2) { border-bottom: none; }
+
+  .sec { padding: 64px 20px; }
+  .sec-sub { max-width: 100%; }
+
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+
+  .book-layout { grid-template-columns: 1fr; gap: 40px; }
+
+  .barber-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .barber { padding: 20px 12px; }
+  .b-av { width: 52px; height: 52px; font-size: 1rem; }
+  .b-nm { font-size: .85rem; }
+
+  .rv-grid { grid-template-columns: 1fr; }
+
+  .hc-grid { grid-template-columns: 1fr; gap: 44px; }
+
+  footer { padding: 26px 20px; flex-direction: column; text-align: center; gap: 10px; }
+}
+
+/* === MOBILE (iPhone standard — up to 480px) === */
+@media (max-width: 480px) {
+  nav { padding: 12px 16px; }
+  .nav-logo { font-size: .9rem; }
+  .nav-right { gap: 10px; }
+  .lang-btn { padding: 3px 5px; font-size: .62rem; }
+  .nav-cta { padding: 8px 14px; font-size: .66rem; letter-spacing: .5px; }
+
+  .hero { padding: 100px 18px 60px; }
+  .hero h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); letter-spacing: -1px; line-height: .95; }
+  .hero-badge { font-size: .58rem; letter-spacing: 1.5px; padding: 5px 14px; }
+  .hero-addr { font-size: .7rem; letter-spacing: 1px; }
+  .hero-rcount { font-size: .74rem; }
+  .hero-scissors { display: none; }
+  .btn-gold, .btn-ghost { padding: 13px 28px; font-size: .8rem; }
+  .hero-btns { max-width: 260px; }
+
+  .stat { padding: 20px 10px; }
+  .stat-n { font-size: 1.5rem; }
+  .stat-l { font-size: .55rem; }
+
+  .sec { padding: 52px 16px; }
+  .sec-h { font-size: 1.6rem; }
+  .sec-sub { font-size: .84rem; margin-bottom: 36px; }
+  .sec-tag { font-size: .58rem; }
+
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc { padding: 26px 20px; }
+  .svc-nm { font-size: 1rem; }
+  .svc-ds { font-size: .8rem; }
+
+  .book-head { padding: 16px 18px; }
+  .book-body { padding: 16px 18px; }
+  .book-btn { font-size: .82rem; padding: 13px; }
+  .pills { gap: 5px; }
+  .pill { padding: 6px 11px; font-size: .72rem; }
+  .book-feats li { font-size: .8rem; }
+  .cash-note { font-size: .73rem; }
+
+  .barber-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .barber { padding: 18px 12px; }
+  .b-av { width: 48px; height: 48px; font-size: .95rem; margin-bottom: 10px; }
+  .b-nm { font-size: .82rem; }
+  .b-seat { font-size: .58rem; }
+  .btag { font-size: .58rem; padding: 2px 6px; }
+
+  .rv { padding: 20px 18px; }
+  .rv-txt { font-size: .8rem; }
+  .rv-q { font-size: 2rem; top: 12px; right: 14px; }
+
+  .hr-row { font-size: .8rem; padding: 10px 0; }
+  .cd-val { font-size: .84rem; }
+  .map-btn { font-size: .73rem; padding: 10px 16px; }
+
+  footer { padding: 22px 16px; }
+  .ft-logo { font-size: .88rem; }
+  .ft-meta { font-size: .63rem; }
+  .ft-badge { font-size: .58rem; }
+}
+
+/* === SMALL MOBILE (iPhone SE, 375px and below) === */
+@media (max-width: 375px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-badge { font-size: .55rem; letter-spacing: 1px; }
+  .stat-n { font-size: 1.35rem; }
+  .barber-grid { grid-template-columns: 1fr 1fr; }
+  .nav-cta { padding: 7px 12px; font-size: .62rem; }
+}
 </style>
 </head>
 <body>
