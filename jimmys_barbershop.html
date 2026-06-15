@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jimmy's Barber Shop 504 · Houston, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A22E;--gold-l:#DFBA4A;--bg:#090909;--bg2:#101010;--bg3:#171717;--text:#f0ece2;--muted:#5e5e5e;--muted2:#949494;--border:#1d1d1d}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 52px;background:rgba(9,9,9,.95);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;color:var(--gold);line-height:1.1}
+.nav-logo small{display:block;font-family:'Inter',sans-serif;font-size:.58rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;font-weight:400;margin-top:2px}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-size:.72rem;color:var(--muted2);letter-spacing:.8px;text-transform:uppercase;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.lang-toggle{display:flex;align-items:center}
+.lang-btn{background:none;border:none;color:var(--muted);font-size:.68rem;font-weight:700;letter-spacing:1px;cursor:pointer;padding:4px 8px;transition:color .2s;font-family:'Inter',sans-serif;text-transform:uppercase}
+.lang-btn:hover{color:var(--text)}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:var(--border);font-size:.9rem}
+.nav-cta{background:var(--gold);color:#000;font-size:.7rem;font-weight:700;padding:10px 22px;letter-spacing:1px;text-transform:uppercase;transition:background .2s;display:inline-block}
+.nav-cta:hover{background:var(--gold-l)}
+@media(max-width:720px){nav{padding:14px 18px}.nav-links{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;filter:blur(5px);transform:scale(1.1);z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.88) 0%,rgba(0,0,0,.72) 50%,rgba(0,0,0,.95) 100%);z-index:1}
+.hero>*{position:relative;z-index:2}
+.hero-scissors{position:absolute;font-size:14rem;color:rgba(201,162,46,.06);right:4%;bottom:8%;transform:rotate(-30deg);z-index:2;pointer-events:none;user-select:none;line-height:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;margin-bottom:26px;border:1px solid rgba(201,162,46,.3);color:var(--gold);font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;font-weight:600}
+.hero h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;line-height:.9;letter-spacing:-2px;margin-bottom:18px}
+.hero h1 em{color:var(--gold);font-style:normal;animation:shimmer 3s ease-in-out infinite}
+@keyframes shimmer{0%,100%{color:var(--gold)}50%{color:var(--gold-l);text-shadow:0 0 60px rgba(201,162,46,.4)}}
+.hero-addr{font-size:.78rem;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.hero-rating{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:42px}
+.hero-stars{color:var(--gold);letter-spacing:2px}
+.hero-rcount{font-size:.8rem;color:rgba(255,255,255,.55)}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-gold{background:var(--gold);color:#000;font-size:.83rem;font-weight:600;padding:14px 36px;transition:background .2s,transform .15s;display:inline-block}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.2);color:var(--text);font-size:.83rem;padding:14px 36px;display:inline-block;transition:border-color .2s,background .2s;backdrop-filter:blur(4px)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06)}
+.hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.3);font-size:.6rem;letter-spacing:2px;text-transform:uppercase;animation:fp 2.5s ease-in-out infinite;z-index:2}
+.hero-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--gold),transparent)}
+@keyframes fp{0%,100%{opacity:.2}50%{opacity:.8}}
+
+/* STATS */
+.stats{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;justify-content:center}
+.stat{flex:1;max-width:185px;padding:24px 14px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;color:var(--gold);display:block;line-height:1}
+.stat-l{font-size:.6rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;display:block}
+@media(max-width:520px){.stat{min-width:50%}}
+
+/* SECTIONS */
+.sec{padding:84px 24px}
+.sec-alt{background:var(--bg2)}
+.wrap{max-width:1040px;margin:0 auto}
+.sec-tag{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+.sec-h{font-size:clamp(1.6rem,4vw,2.5rem);font-weight:700;margin-bottom:10px}
+.sec-sub{font-size:.86rem;color:var(--muted2);max-width:460px;line-height:1.8;margin-bottom:46px}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+@media(max-width:680px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.svc-grid{grid-template-columns:1fr}}
+.svc{background:var(--bg);padding:32px 24px;position:relative;overflow:hidden;transition:background .2s}
+.svc::after{content:'';position:absolute;left:0;bottom:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc:hover{background:var(--bg3)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-ic{font-size:1.35rem;margin-bottom:14px;display:block}
+.svc-nm{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;margin-bottom:7px}
+.svc-ds{font-size:.78rem;color:var(--muted);line-height:1.65}
+
+/* BOOKING */
+.book-layout{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+@media(max-width:760px){.book-layout{grid-template-columns:1fr;gap:40px}}
+.book-feats{list-style:none;margin:22px 0 28px}
+.book-feats li{display:flex;align-items:center;gap:12px;font-size:.84rem;color:var(--muted2);padding:9px 0;border-bottom:1px solid var(--border)}
+.book-feats li:last-child{border-bottom:none}
+.feat-chk{color:var(--gold);font-size:.78rem;flex-shrink:0}
+.cash-note{font-size:.75rem;color:var(--muted);line-height:1.6}
+.cash-note strong{color:var(--muted2)}
+.book-card{background:var(--bg3);border:1px solid var(--border)}
+.book-head{background:#150f00;border-bottom:1px solid rgba(201,162,46,.2);padding:20px 24px;display:flex;align-items:center;gap:13px}
+.book-ic{width:38px;height:38px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.book-head h3{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;margin-bottom:2px}
+.book-head p{font-size:.7rem;color:var(--muted)}
+.book-body{padding:20px 24px}
+.pill-lbl{font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.pill{padding:7px 13px;border:1px solid var(--border);font-size:.74rem;cursor:pointer;transition:all .18s;user-select:none;background:var(--bg2);color:var(--muted2)}
+.pill:hover{border-color:rgba(201,162,46,.4);color:var(--gold)}
+.pill.on{border-color:var(--gold);background:rgba(201,162,46,.1);color:var(--gold);font-weight:600}
+.divider{height:1px;background:var(--border);margin:16px 0}
+.book-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--gold);color:#000;font-weight:700;font-size:.86rem;padding:14px;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.book-btn:hover{background:var(--gold-l);transform:translateY(-1px)}
+.book-note{font-size:.68rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.55}
+.sq-pow{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:6px}
+.sq-txt{font-size:.62rem;color:var(--muted)}
+.sq-badge{background:#000;color:#fff;font-size:.6rem;font-weight:700;padding:2px 7px;letter-spacing:.5px}
+
+/* BARBERS */
+.barber-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px}
+.barber{background:var(--bg3);border:1px solid var(--border);padding:24px 16px;text-align:center;transition:border-color .2s,transform .2s}
+.barber:hover{border-color:rgba(201,162,46,.35);transform:translateY(-3px)}
+.b-av{width:60px;height:60px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);margin:0 auto 13px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);font-style:italic;transition:border-color .2s}
+.barber:hover .b-av{border-color:var(--gold)}
+.b-nm{font-family:'Playfair Display',Georgia,serif;font-size:.92rem;margin-bottom:4px}
+.b-seat{font-size:.62rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.btags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.btag{font-size:.6rem;color:var(--gold);background:rgba(201,162,46,.1);padding:3px 8px}
+
+/* REVIEWS */
+.rv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.rv{background:var(--bg3);border:1px solid var(--border);padding:24px;position:relative}
+.rv-q{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(201,162,46,.1);position:absolute;top:14px;right:18px;line-height:1}
+.rv-stars{color:var(--gold);font-size:.78rem;letter-spacing:3px;margin-bottom:13px}
+.rv-txt{font-size:.82rem;color:#8e8570;line-height:1.72;margin-bottom:17px;font-style:italic}
+.rv-nm{font-size:.78rem;font-weight:600;color:var(--text)}
+.rv-dt{font-size:.68rem;color:var(--muted);margin-top:2px}
+.rv-src{font-size:.65rem;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.all-rv{text-align:center;margin-top:30px}
+.all-rv a{font-size:.8rem;color:var(--gold);border-bottom:1px solid rgba(201,162,46,.3);padding-bottom:2px;transition:border-color .2s}
+.all-rv a:hover{border-color:var(--gold)}
+
+/* HOURS */
+.hc-grid{display:grid;grid-template-columns:1fr 1fr;gap:68px}
+@media(max-width:760px){.hc-grid{grid-template-columns:1fr;gap:44px}}
+.hr-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:.84rem}
+.hr-row:last-child{border-bottom:none}
+.hr-day{color:var(--muted2);display:flex;align-items:center;gap:8px}
+.hr-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0}
+.hr-time{color:var(--text);font-weight:500}
+.hr-row.today .hr-day,.hr-row.today .hr-time{color:var(--gold)}
+.hr-row.today .hr-dot{background:var(--gold)}
+.cd-item{display:flex;gap:13px;margin-bottom:22px;align-items:flex-start}
+.cd-ico{font-size:.95rem;padding-top:3px;flex-shrink:0}
+.cd-lbl{font-size:.6rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.cd-val{font-size:.88rem;color:var(--text)}
+.cd-val a{color:var(--text);transition:color .2s}
+.cd-val a:hover{color:var(--gold)}
+.map-btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 20px;border:1px solid var(--border);font-size:.76rem;color:var(--muted2);transition:all .2s}
+.map-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 52px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+@media(max-width:580px){footer{padding:26px 18px;flex-direction:column;text-align:center}}
+.ft-logo{font-family:'Playfair Display',Georgia,serif;font-size:.95rem;color:var(--gold)}
+.ft-meta{font-size:.67rem;color:var(--muted);line-height:1.7}
+.ft-badge{font-size:.62rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Jimmy's Barber Shop<small>504 · Houston, TX</small></a>
+  <ul class="nav-links">
+    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+    <li><a href="#book" data-i18n="nav_book">Book</a></li>
+    <li><a href="#barbers" data-i18n="nav_barbers">Barbers</a></li>
+    <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+    <li><a href="#contact" data-i18n="nav_hours">Hours</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+    <a class="nav-cta" href="#book" data-i18n="nav_cta">Book Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-scissors">✂</div>
+  <div class="hero-badge" data-i18n="hero_badge">✦ Latino-Owned · East Houston, TX</div>
+  <h1>Jimmy's<br><em>Barber</em> Shop</h1>
+  <p class="hero-addr">14646 Alderson St B · Houston, TX 77015</p>
+  <div class="hero-rating">
+    <span class="hero-stars">★★★★★</span>
+    <span class="hero-rcount" data-i18n="hero_rating">4.4 · 360 Google Reviews</span>
+  </div>
+  <div class="hero-btns">
+    <a class="btn-gold" href="#book" data-i18n="hero_btn1">Book Appointment</a>
+    <a class="btn-ghost" href="tel:3464757266" data-i18n="hero_btn2">Call (346) 475-7266</a>
+  </div>
+  <div class="hero-scroll"><div class="hero-line"></div>Scroll</div>
+</section>
+
+<div class="stats">
+  <div class="stat"><span class="stat-n">360+</span><span class="stat-l" data-i18n="stat1_l">Google Reviews</span></div>
+  <div class="stat"><span class="stat-n">4.4★</span><span class="stat-l" data-i18n="stat2_l">Avg Rating</span></div>
+  <div class="stat"><span class="stat-n">11</span><span class="stat-l" data-i18n="stat3_l">Skilled Barbers</span></div>
+  <div class="stat"><span class="stat-n">7 Days</span><span class="stat-l" data-i18n="stat4_l">Always Open</span></div>
+</div>
+
+<section class="sec sec-alt" id="services">
+  <div class="wrap">
+    <p class="sec-tag" data-i18n="svc_tag">What We Do</p>
+    <h2 class="sec-h" data-i18n="svc_h">Our Services</h2>
+    <p class="sec-sub" data-i18n="svc_sub">From clean fades to full beard shaping — every service delivered with precision and attention to detail.</p>
+    <div class="svc-grid">
+      <div class="svc"><span class="svc-ic">✂️</span><div class="svc-nm" data-i18n="svc1_nm">Classic Haircut</div><p class="svc-ds" data-i18n="svc1_ds">Clean, precise cuts tailored to your style — every barber brings skill and detail to every chair.</p></div>
+      <div class="svc"><span class="svc-ic">⚡</span><div class="svc-nm" data-i18n="svc2_nm">Fade</div><p class="svc-ds" data-i18n="svc2_ds">Low, mid, or high — skin fades, tapers, and everything in between. Consistently sharp every time.</p></div>
+      <div class="svc"><span class="svc-ic">🪒</span><div class="svc-nm" data-i18n="svc3_nm">Beard Trim & Shape</div><p class="svc-ds" data-i18n="svc3_ds">Clean lines, sharp edges. We shape your beard to complement your face and style.</p></div>
+      <div class="svc"><span class="svc-ic">🔥</span><div class="svc-nm" data-i18n="svc4_nm">Hot Towel Shave</div><p class="svc-ds" data-i18n="svc4_ds">Classic straight razor shave with hot towel treatment for a close, smooth finish.</p></div>
+      <div class="svc"><span class="svc-ic">👦</span><div class="svc-nm" data-i18n="svc5_nm">Kids Cut</div><p class="svc-ds" data-i18n="svc5_ds">Patient and precise cuts for the young ones. They'll leave looking and feeling confident.</p></div>
+      <div class="svc"><span class="svc-ic">💎</span><div class="svc-nm" data-i18n="svc6_nm">Combo Cut + Beard</div><p class="svc-ds" data-i18n="svc6_ds">The full package — haircut and beard service done together in one session.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="book">
+  <div class="wrap">
+    <div class="book-layout">
+      <div>
+        <p class="sec-tag" data-i18n="book_tag">Appointments</p>
+        <h2 class="sec-h" data-i18n="book_h">Book Your Seat</h2>
+        <p class="sec-sub" data-i18n="book_sub">Skip the wait. Pick your service and your barber gets notified the moment you book.</p>
+        <ul class="book-feats">
+          <li><span class="feat-chk">✓</span><span data-i18n="feat1">Real-time availability — see open slots instantly</span></li>
+          <li><span class="feat-chk">✓</span><span data-i18n="feat2">Instant confirmation sent to your phone</span></li>
+          <li><span class="feat-chk">✓</span><span data-i18n="feat3">Barbers notified the moment you book</span></li>
+          <li><span class="feat-chk">✓</span><span data-i18n="feat4">Easy rescheduling or cancellation anytime</span></li>
+          <li><span class="feat-chk">✓</span><span data-i18n="feat5">Walk-ins always welcome</span></li>
+        </ul>
+        <p class="cash-note" data-i18n="cash_note">💵 <strong>Cash only.</strong> We don't accept cards — plan accordingly. Nearest ATM available nearby.</p>
+      </div>
+      <div>
+        <div class="book-card">
+          <div class="book-head">
+            <div class="book-ic">✂️</div>
+            <div><h3>Book an Appointment</h3><p>Jimmy's Barber Shop 504 · Houston, TX</p></div>
+          </div>
+          <div class="book-body">
+            <p class="pill-lbl" data-i18n="pill_lbl">Select a service</p>
+            <div class="pills">
+              <div class="pill on" onclick="pickSvc(this)" data-i18n="pill1">Haircut</div>
+              <div class="pill" onclick="pickSvc(this)" data-i18n="pill2">Fade</div>
+              <div class="pill" onclick="pickSvc(this)" data-i18n="pill3">Beard Trim</div>
+              <div class="pill" onclick="pickSvc(this)" data-i18n="pill4">Hot Towel Shave</div>
+              <div class="pill" onclick="pickSvc(this)" data-i18n="pill5">Kids Cut</div>
+              <div class="pill" onclick="pickSvc(this)" data-i18n="pill6">Combo</div>
+            </div>
+            <div class="divider"></div>
+            <button class="book-btn" onclick="goBook()" data-i18n="book_btn_txt">📅 &nbsp;Book Now on Square</button>
+            <p class="book-note" data-i18n="book_note_txt">You'll be taken to the Square booking page to choose your barber, date, and time.</p>
+            <div class="sq-pow"><span class="sq-txt" data-i18n="sq_txt">Powered by</span><span class="sq-badge">SQUARE</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="barbers">
+  <div class="wrap">
+    <p class="sec-tag" data-i18n="barbers_tag">The Team</p>
+    <h2 class="sec-h" data-i18n="barbers_h">Our Barbers</h2>
+    <p class="sec-sub" data-i18n="barbers_sub">A few of our talented barbers. Walk up to the desk, give your name, and you'll be in a chair within 10–15 minutes.</p>
+    <div class="barber-grid">
+      <div class="barber"><div class="b-av">M</div><div class="b-nm">Mandy</div><div class="b-seat" data-i18n="b_featured">Featured</div><div class="btags"><span class="btag" data-i18n="tag_fades">Fades</span><span class="btag" data-i18n="tag_detail">Detail</span></div></div>
+      <div class="barber"><div class="b-av">Y</div><div class="b-nm">Yoel</div><div class="b-seat" data-i18n="b_chair2">Chair 2</div><div class="btags"><span class="btag" data-i18n="tag_fades">Fades</span><span class="btag" data-i18n="tag_kids">Kids</span></div></div>
+      <div class="barber"><div class="b-av">Al</div><div class="b-nm">Alberto</div><div class="b-seat" data-i18n="b_seat11">Seat 11</div><div class="btags"><span class="btag" data-i18n="tag_fades">Fades</span><span class="btag" data-i18n="tag_beards">Beards</span></div></div>
+      <div class="barber"><div class="b-av">An</div><div class="b-nm">Angel</div><div class="b-seat" data-i18n="b_staff">Staff</div><div class="btags"><span class="btag" data-i18n="tag_detail">Detail</span></div></div>
+      <div class="barber"><div class="b-av">Ar</div><div class="b-nm">Armando</div><div class="b-seat" data-i18n="b_staff">Staff</div><div class="btags"><span class="btag" data-i18n="tag_all_styles">All Styles</span></div></div>
+      <div class="barber"><div class="b-av">Ag</div><div class="b-nm">Argel</div><div class="b-seat" data-i18n="b_chair10">Chair 10</div><div class="btags"><span class="btag" data-i18n="tag_fast">Fast</span><span class="btag" data-i18n="tag_clean">Clean</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <p class="sec-tag" data-i18n="rv_tag">What People Say</p>
+    <h2 class="sec-h" data-i18n="rv_h">Reviews</h2>
+    <p class="sec-sub" data-i18n="rv_sub">4.4 stars across 360+ Google reviews. Real customers, real results.</p>
+    <div class="rv-grid">
+      <div class="rv"><div class="rv-q">"</div><div class="rv-stars">★★★★★</div><p class="rv-txt">Mandy is an exceptional barber whose professionalism shows from the moment you sit in his chair. His attention to detail is unmatched — consistently clean, precise cuts every time.</p><div class="rv-nm">TotalGrowControl Alarms</div><div class="rv-dt">6 months ago</div><div class="rv-src" data-i18n="rv_src">Google Review</div></div>
+      <div class="rv"><div class="rv-q">"</div><div class="rv-stars">★★★★★</div><p class="rv-txt">Best shop in East Houston. Everyone can fade so don't worry about that. Even when it's busy you'll be in a chair fast — they have 11 barbers on deck.</p><div class="rv-nm">Martin Gee</div><div class="rv-dt">6 months ago</div><div class="rv-src" data-i18n="rv_src">Google Review</div></div>
+      <div class="rv"><div class="rv-q">"</div><div class="rv-stars">★★★★★</div><p class="rv-txt">My brothers and I have been coming here for years. Always worth the drive. Extremely talented barbers and great customer service, every single time.</p><div class="rv-nm">Asbel Garza · Local Guide</div><div class="rv-dt">1 year ago</div><div class="rv-src" data-i18n="rv_src">Google Review</div></div>
+      <div class="rv"><div class="rv-q">"</div><div class="rv-stars">★★★★★</div><p class="rv-txt">Been coming here 3 years straight. Every time I go somewhere else I'm reminded why they're the best barbershop this side of Houston. Talented staff, fair pricing.</p><div class="rv-nm">whosischris</div><div class="rv-dt">2 years ago</div><div class="rv-src" data-i18n="rv_src">Google Review</div></div>
+    </div>
+    <div class="all-rv"><a href="https://www.google.com/search?q=Jimmy%27s+Barber+Shop+504+Houston+reviews" target="_blank" data-i18n="rv_all">See all 360+ reviews on Google →</a></div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="contact">
+  <div class="wrap">
+    <div class="hc-grid">
+      <div>
+        <p class="sec-tag" data-i18n="hrs_tag">We're Open</p>
+        <h2 class="sec-h" style="margin-bottom:26px" data-i18n="hrs_h">Hours</h2>
+        <div class="hr-row" data-day="0"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day0">Sunday</span></span><span class="hr-time">9:00 AM – 4:00 PM</span></div>
+        <div class="hr-row" data-day="1"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day1">Monday</span></span><span class="hr-time">9:00 AM – 7:30 PM</span></div>
+        <div class="hr-row" data-day="2"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day2">Tuesday</span></span><span class="hr-time">9:00 AM – 7:30 PM</span></div>
+        <div class="hr-row" data-day="3"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day3">Wednesday</span></span><span class="hr-time">9:00 AM – 7:30 PM</span></div>
+        <div class="hr-row" data-day="4"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day4">Thursday</span></span><span class="hr-time">9:00 AM – 7:30 PM</span></div>
+        <div class="hr-row" data-day="5"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day5">Friday</span></span><span class="hr-time">9:00 AM – 7:30 PM</span></div>
+        <div class="hr-row" data-day="6"><span class="hr-day"><span class="hr-dot"></span><span data-i18n="day6">Saturday</span></span><span class="hr-time">9:00 AM – 7:30 PM</span></div>
+      </div>
+      <div>
+        <p class="sec-tag" data-i18n="contact_tag">Find Us</p>
+        <h2 class="sec-h" style="margin-bottom:26px" data-i18n="contact_h">Contact</h2>
+        <div class="cd-item"><span class="cd-ico">📍</span><div><div class="cd-lbl" data-i18n="lbl_addr">Address</div><div class="cd-val">14646 Alderson St B<br>Houston, TX 77015</div></div></div>
+        <div class="cd-item"><span class="cd-ico">📞</span><div><div class="cd-lbl" data-i18n="lbl_phone">Phone</div><div class="cd-val"><a href="tel:3464757266">(346) 475-7266</a></div></div></div>
+        <div class="cd-item"><span class="cd-ico">💵</span><div><div class="cd-lbl" data-i18n="lbl_pay">Payment</div><div class="cd-val" data-i18n="val_pay">Cash only</div></div></div>
+        <a class="map-btn" href="https://maps.google.com/?q=14646+Alderson+St+B+Houston+TX+77015" target="_blank" data-i18n="map_btn_txt">📍 Get Directions on Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">Jimmy's Barber Shop 504</div>
+  <div class="ft-meta" data-i18n="ft_meta">14646 Alderson St B, Houston, TX 77015 &nbsp;·&nbsp; (346) 475-7266<br>© 2025 Jimmy's Barber Shop 504. All rights reserved.</div>
+  <div class="ft-badge" data-i18n="ft_badge">Latino-Owned Business</div>
+</footer>
+
+<script>
+var t={
+  en:{
+    nav_services:'Services',nav_book:'Book',nav_barbers:'Barbers',nav_reviews:'Reviews',nav_hours:'Hours',nav_cta:'Book Now',
+    hero_badge:'✦ Latino-Owned · East Houston, TX',hero_rating:'4.4 · 360 Google Reviews',
+    hero_btn1:'Book Appointment',hero_btn2:'Call (346) 475-7266',
+    stat1_l:'Google Reviews',stat2_l:'Avg Rating',stat3_l:'Skilled Barbers',stat4_l:'Always Open',
+    svc_tag:'What We Do',svc_h:'Our Services',svc_sub:'From clean fades to full beard shaping — every service delivered with precision and attention to detail.',
+    svc1_nm:'Classic Haircut',svc1_ds:'Clean, precise cuts tailored to your style — every barber brings skill and detail to every chair.',
+    svc2_nm:'Fade',svc2_ds:'Low, mid, or high — skin fades, tapers, and everything in between. Consistently sharp every time.',
+    svc3_nm:'Beard Trim & Shape',svc3_ds:'Clean lines, sharp edges. We shape your beard to complement your face and style.',
+    svc4_nm:'Hot Towel Shave',svc4_ds:'Classic straight razor shave with hot towel treatment for a close, smooth finish.',
+    svc5_nm:'Kids Cut',svc5_ds:"Patient and precise cuts for the young ones. They'll leave looking and feeling confident.",
+    svc6_nm:'Combo Cut + Beard',svc6_ds:'The full package — haircut and beard service done together in one session.',
+    book_tag:'Appointments',book_h:'Book Your Seat',book_sub:'Skip the wait. Pick your service and your barber gets notified the moment you book.',
+    feat1:'Real-time availability — see open slots instantly',feat2:'Instant confirmation sent to your phone',
+    feat3:'Barbers notified the moment you book',feat4:'Easy rescheduling or cancellation anytime',feat5:'Walk-ins always welcome',
+    cash_note:"💵 <strong>Cash only.</strong> We don't accept cards — plan accordingly. Nearest ATM available nearby.",
+    pill_lbl:'Select a service',pill1:'Haircut',pill2:'Fade',pill3:'Beard Trim',pill4:'Hot Towel Shave',pill5:'Kids Cut',pill6:'Combo',
+    book_btn_txt:'📅 &nbsp;Book Now on Square',
+    book_note_txt:"You'll be taken to the Square booking page to choose your barber, date, and time.",
+    sq_txt:'Powered by',
+    barbers_tag:'The Team',barbers_h:'Our Barbers',barbers_sub:"A few of our talented barbers. Walk up to the desk, give your name, and you'll be in a chair within 10–15 minutes.",
+    b_featured:'Featured',b_chair2:'Chair 2',b_seat11:'Seat 11',b_staff:'Staff',b_chair10:'Chair 10',
+    tag_fades:'Fades',tag_detail:'Detail',tag_kids:'Kids',tag_beards:'Beards',tag_fast:'Fast',tag_clean:'Clean',tag_all_styles:'All Styles',
+    rv_tag:'What People Say',rv_h:'Reviews',rv_sub:'4.4 stars across 360+ Google reviews. Real customers, real results.',
+    rv_src:'Google Review',rv_all:'See all 360+ reviews on Google →',
+    hrs_tag:"We're Open",hrs_h:'Hours',contact_tag:'Find Us',contact_h:'Contact',
+    day0:'Sunday',day1:'Monday',day2:'Tuesday',day3:'Wednesday',day4:'Thursday',day5:'Friday',day6:'Saturday',
+    lbl_addr:'Address',lbl_phone:'Phone',lbl_pay:'Payment',val_pay:'Cash only',
+    map_btn_txt:'📍 Get Directions on Google Maps →',
+    ft_meta:"14646 Alderson St B, Houston, TX 77015 &nbsp;·&nbsp; (346) 475-7266<br>© 2025 Jimmy's Barber Shop 504. All rights reserved.",
+    ft_badge:'Latino-Owned Business'
+  },
+  es:{
+    nav_services:'Servicios',nav_book:'Reservar',nav_barbers:'Barberos',nav_reviews:'Reseñas',nav_hours:'Horario',nav_cta:'Reservar Ahora',
+    hero_badge:'✦ Negocio Latino · East Houston, TX',hero_rating:'4.4 · 360 Reseñas en Google',
+    hero_btn1:'Reservar Cita',hero_btn2:'Llamar (346) 475-7266',
+    stat1_l:'Reseñas Google',stat2_l:'Calificación',stat3_l:'Barberos',stat4_l:'Siempre Abiertos',
+    svc_tag:'Lo Que Hacemos',svc_h:'Nuestros Servicios',svc_sub:'De fades limpios a perfilado de barba completo — cada servicio entregado con precisión y atención al detalle.',
+    svc1_nm:'Corte Clásico',svc1_ds:'Cortes limpios y precisos adaptados a tu estilo — cada barbero trae habilidad y detalle a cada silla.',
+    svc2_nm:'Degradado (Fade)',svc2_ds:'Bajo, medio o alto — degradados a piel, tapers y todo lo que hay en medio. Siempre preciso.',
+    svc3_nm:'Arreglo y Perfilado de Barba',svc3_ds:'Líneas limpias y bordes definidos. Damos forma a tu barba para complementar tu rostro.',
+    svc4_nm:'Afeitado con Toalla Caliente',svc4_ds:'Afeitado clásico con navaja recta y toalla caliente para un acabado suave y limpio.',
+    svc5_nm:'Corte para Niños',svc5_ds:'Cortes pacientes y precisos para los más pequeños. Saldrán viéndose y sintiéndose seguros.',
+    svc6_nm:'Combo Corte + Barba',svc6_ds:'El paquete completo — corte y servicio de barba en una sola sesión.',
+    book_tag:'Citas',book_h:'Reserva Tu Lugar',book_sub:'Sin esperas. Elige tu servicio y tu barbero recibe una notificación al instante.',
+    feat1:'Disponibilidad en tiempo real — ve los horarios disponibles al instante',feat2:'Confirmación instantánea enviada a tu teléfono',
+    feat3:'El barbero es notificado en cuanto reservas',feat4:'Reprogramación o cancelación fácil en cualquier momento',feat5:'Siempre aceptamos sin cita previa',
+    cash_note:'💵 <strong>Solo efectivo.</strong> No aceptamos tarjetas — planifica con anticipación. Hay un cajero automático cerca.',
+    pill_lbl:'Selecciona un servicio',pill1:'Corte',pill2:'Degradado',pill3:'Arreglo Barba',pill4:'Afeitado',pill5:'Niños',pill6:'Combo',
+    book_btn_txt:'📅 &nbsp;Reservar Ahora en Square',
+    book_note_txt:'Serás redirigido a la página de Square para elegir tu barbero, fecha y hora.',
+    sq_txt:'Desarrollado por',
+    barbers_tag:'El Equipo',barbers_h:'Nuestros Barberos',barbers_sub:'Algunos de nuestros talentosos barberos. Acércate al mostrador, da tu nombre y estarás en la silla en 10–15 minutos.',
+    b_featured:'Destacado',b_chair2:'Silla 2',b_seat11:'Asiento 11',b_staff:'Personal',b_chair10:'Silla 10',
+    tag_fades:'Degradados',tag_detail:'Detalle',tag_kids:'Niños',tag_beards:'Barbas',tag_fast:'Rápido',tag_clean:'Limpio',tag_all_styles:'Todo Estilo',
+    rv_tag:'Lo Que Opinan',rv_h:'Reseñas',rv_sub:'4.4 estrellas en más de 360 reseñas de Google. Clientes reales, resultados reales.',
+    rv_src:'Reseña de Google',rv_all:'Ver todas las reseñas en Google →',
+    hrs_tag:'Estamos Abiertos',hrs_h:'Horario',contact_tag:'Encuéntranos',contact_h:'Contacto',
+    day0:'Domingo',day1:'Lunes',day2:'Martes',day3:'Miércoles',day4:'Jueves',day5:'Viernes',day6:'Sábado',
+    lbl_addr:'Dirección',lbl_phone:'Teléfono',lbl_pay:'Pago',val_pay:'Solo Efectivo',
+    map_btn_txt:'📍 Cómo Llegar en Google Maps →',
+    ft_meta:"14646 Alderson St B, Houston, TX 77015 &nbsp;·&nbsp; (346) 475-7266<br>© 2025 Jimmy's Barber Shop 504. Todos los derechos reservados.",
+    ft_badge:'Negocio de Propietario Latino'
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k=el.getAttribute('data-i18n');
+    if(t[lang][k]!==undefined) el.innerHTML=t[lang][k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-lang')===lang);
+  });
+}
+
+function pickSvc(el){
+  document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('on')});
+  el.classList.add('on');
+}
+
+function goBook(){
+  window.open('https://squareup.com/appointments/book/','_blank');
+}
+
+var today=new Date().getDay();
+var row=document.querySelector('.hr-row[data-day="'+today+'"]');
+if(row) row.classList.add('today');
+</script>
+</body>
+</html>
