@@ -302,6 +302,61 @@ body.light .icon-sun  { display: block; }
   .theme-btn { width: 28px; height: 28px; }
   .theme-btn svg { width: 13px; height: 13px; }
 }
+:root {
+  --texture: repeating-linear-gradient(
+    -60deg,
+    transparent      0px,
+    transparent      30px,
+    rgba(201,162,46,.04) 30px,
+    rgba(201,162,46,.04) 31px
+  );
+}
+
+/* Apply to every major surface so it shows everywhere */
+body     { background-image: var(--texture); }
+.stats   { background-color: var(--bg2); background-image: var(--texture); }
+.sec     { background-image: var(--texture); }
+.sec-alt { background-color: var(--bg2); background-image: var(--texture); }
+footer   { background-color: var(--bg2); background-image: var(--texture); }
+
+/* ── Light mode — full upgrade ───────────────────────────────
+   Stronger color contrast between surfaces, darker text,
+   darker gold so it reads on cream backgrounds.
+   Warm brown pinstripes instead of gold.
+   ---------------------------------------------------------- */
+body.light {
+  --bg:     #f5f2eb;
+  --bg2:    #e7e2d5;   /* more distinct from --bg */
+  --bg3:    #d9d4c6;   /* more distinct from --bg2 */
+  --text:   #1a1712;
+  --muted:  #6e6455;
+  --muted2: #45403a;
+  --border: #c4bfb0;
+  --gold:   #9c7a16;   /* darkened — passes contrast on cream */
+  --gold-l: #b38f1e;
+
+  --texture: repeating-linear-gradient(
+    -60deg,
+    transparent      0px,
+    transparent      30px,
+    rgba(80,58,18,.06) 30px,
+    rgba(80,58,18,.06) 31px
+  );
+}
+
+/* Hardcoded color overrides variables can't reach */
+body.light nav         { background: rgba(245,242,235,.97); }
+body.light .rv-txt     { color: #544a3a; }
+body.light .book-head  { background: #1e1500; } /* keep dark for legibility */
+body.light .sq-badge   { background: #1a1712; color: #f5f2eb; }
+
+/* Hero text is on a dark image overlay — keep white regardless of theme */
+body.light .hero-addr   { color: rgba(255,255,255,.65); }
+body.light .hero-rcount { color: rgba(255,255,255,.6);  }
+
+/* Icon swap (in case previous patch isn't pasted yet) */
+body.light .icon-moon { display: none;  }
+body.light .icon-sun  { display: block; }
 </style>
 </head>
 <body>
