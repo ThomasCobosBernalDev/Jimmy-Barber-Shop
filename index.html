@@ -265,6 +265,43 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 52p
   .barber-grid { grid-template-columns: 1fr 1fr; }
   .nav-cta { padding: 7px 12px; font-size: .62rem; }
 }
+.theme-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, color .2s;
+  flex-shrink: 0; padding: 0;
+}
+.theme-btn:hover { border-color: var(--gold); color: var(--gold); }
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+
+/* Light theme — CSS variables flip everything automatically */
+body.light {
+  --bg: #f4f1ea;
+  --bg2: #ede9e1;
+  --bg3: #e4e0d7;
+  --text: #1a1712;
+  --muted: #8c8374;
+  --muted2: #5c5448;
+  --border: #d3cec2;
+}
+
+/* A few hardcoded overrides that variables can't reach */
+body.light nav { background: rgba(244,241,234,.97); }
+body.light .rv-txt { color: #6a6050; }
+body.light .icon-moon { display: none; }
+body.light .icon-sun  { display: block; }
+
+/* Mobile sizing */
+@media (max-width: 480px) {
+  .theme-btn { width: 28px; height: 28px; }
+  .theme-btn svg { width: 13px; height: 13px; }
+}
 </style>
 </head>
 <body>
@@ -280,6 +317,26 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 52p
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
+<button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle light/dark theme">
+  <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1"  x2="12" y2="3"/>
+    <line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22"   x2="5.64"  y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1"  y1="12" x2="3"  y2="12"/>
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+    <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+  </svg>
+</button>
       <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
       <span class="lang-sep">|</span>
       <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
@@ -525,6 +582,17 @@ function goBook(){
 var today=new Date().getDay();
 var row=document.querySelector('.hr-row[data-day="'+today+'"]');
 if(row) row.classList.add('today');
+  function toggleTheme() {
+  var isLight = document.body.classList.toggle('light');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+// Restore saved preference on page load
+(function() {
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+  }
+})();
 </script>
 </body>
 </html>
